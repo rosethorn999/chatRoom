@@ -4,10 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { RoomListComponent } from './room-list/room-list.component';
+import { ChatBoxComponent } from './chat-box/chat-box.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RoomListComponent,
+    ChatBoxComponent
   ],
   imports: [
     BrowserModule,
