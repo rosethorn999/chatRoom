@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-box.component.css']
 })
 export class ChatBoxComponent implements OnInit {
+  private userName = "Angular Developer";
 
   constructor() { }
 

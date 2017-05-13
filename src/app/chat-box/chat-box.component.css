@@ -1,6 +1,75 @@
 .container {
+    font-family: "微軟正黑體";
     height: 500px;
     width: 1000px;
-    display: inline-block;
+    /*display: inline-block;*/
+    float: right;
     border: 1px solid #ddd;
+}
+
+.header {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #ddd;
+    /*background: green;*/
+}
+
+.userName {
+    padding-left: 10px;
+    line-height: 50px;
+}
+
+.userImage {
+    width: 45px;
+    height: 45px;
+    float: left;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+}
+
+.history {
+    height: calc(100% - 100px);
+    width: 100%;
+    /*background-image: "";*/
+}
+
+.newMsg {
+    height: 50px;
+    width: 100%;
+    /*background: cadetblue;*/
+}
+
+.inputBox {
+    /*display: inline-block;*/
+    float: left;
+    /*background: blue;*/
+    width: 100%;
+    height: 45px;
+    border: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.inputBox:focus {
+    outline: none;
+}
+
+.sendMsgButton {
+    position: absolute;
+    right: 10px;
+    width: 40px;
+    height: 35px;
+    float: right;
+    /*display: inline-block;*/
+    padding: 5px;
+    /*background: blue;*/
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 35px;
+}
+
+.sendMsgButton:hover {
+    font-weight: bold;
 }
