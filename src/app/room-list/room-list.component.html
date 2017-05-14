@@ -1,1 +1,7 @@
-<div class="container">app-room-list</div>
+<div class="container">
+    <ul id="roomlist">
+        <li *ngFor="let room of room_list;let i = index;" (mousedown)='changeRoom(i)'>
+            {{room}}
+        </li>
+    </ul>
+</div>

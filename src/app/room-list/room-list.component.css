@@ -4,3 +4,15 @@
     float: left;
     border: 1px solid #ddd;
 }
+
+#roomlist {
+    list-style-type: none;
+    font-size: 20pt;
+    width: 250px;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+#roomlist li:hover {
+    background: gray;
+}
