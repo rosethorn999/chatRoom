@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SharedDataService } from './shared-data.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [SharedDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedDataService } from './../shared-data.service';
 
 @Component({
   selector: 'app-room-list',
@@ -10,24 +11,16 @@ export class RoomListComponent implements OnInit {
   websocket;
   room_list = ['user1', 'user2'];
 
-  constructor() { }
+  constructor(private sharedDataService: SharedDataService) { }
 
   ngOnInit() {
     let self = this;
-    this.websocket = new WebSocket(this.wsUrl + '?name=' + this.room_list[0]);
-    this.websocket.onopen = function (evt) {
-      debugger;
-      self.onOpen(evt);
-    };
-    this.websocket.onclose = function (evt) {
-      self.onClose(evt);
-    };
-    this.websocket.onmessage = function (evt) {
-      self.onMessage(evt);
-    };
-    this.websocket.onerror = function (evt) {
-      self.onError(evt);
-    };
+    this.websocket = this.sharedDataService.newSocket(this.wsUrl + '?name=' + this.room_list[0]);
+    this.sharedDataService.bindSocketEvent(
+      function (evt) { self.onOpen(evt); },
+      function (evt) { self.onClose(evt); },
+      function (evt) { self.onMessage(evt); },
+      function (evt) { self.onError(evt); });
   }
 
 
