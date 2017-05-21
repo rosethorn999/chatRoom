@@ -7,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatBoxComponent implements OnInit {
   private userName = "Angular Developer";
+  private msgs: Array<string> = [];
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  sendMsg(v: string) {
+    this.msgs.push(v);
+  }
 }

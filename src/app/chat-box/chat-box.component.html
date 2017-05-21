@@ -3,9 +3,11 @@
         <img class="userImage" src="src/images/angular.svg">
         <span class="userName">{{userName}}</span>
     </div>
-    <div class="history"></div>
+    <div class="history">
+        <li *ngFor="let msg of msgs">{{msg}}</li>
+    </div>
     <div class="newMsg">
-        <input class="inputBox" placeholder="key in your msg">
-        <div class="sendMsgButton">SEND</div>
+        <input class="inputBox" #inputBox placeholder="key in your msg">
+        <div class="sendMsgButton" (click)="sendMsg(inputBox.value)">SEND</div>
     </div>
 </div>
