@@ -6,30 +6,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./room-list.component.css']
 })
 export class RoomListComponent implements OnInit {
-  wsUrl = "ws://jsonbin.org/lioufongkia/test";
+  wsUrl = "ws://localhost/WebApplication1/ws.ashx"; //todo:到時候要統一命名
   websocket;
   room_list = ['user1', 'user2'];
 
   constructor() { }
 
   ngOnInit() {
-    let headers = [];
-    headers[0] = "Authorization", "token e482852d-34f2-448b-a073-640574badeb3";
-    headers[1] = "Content-Type", "application/json";
-    this.websocket = new WebSocket(this.wsUrl,headers);
+    let self = this;
+    this.websocket = new WebSocket(this.wsUrl + '?name=' + this.room_list[0]);
     this.websocket.onopen = function (evt) {
-      this.onOpen(evt)
+      debugger;
+      self.onOpen(evt);
     };
     this.websocket.onclose = function (evt) {
-      this.onClose(evt)
+      self.onClose(evt);
     };
     this.websocket.onmessage = function (evt) {
-      this.onMessage(evt)
+      self.onMessage(evt);
     };
     this.websocket.onerror = function (evt) {
-      this.onError(evt)
+      self.onError(evt);
     };
   }
+
 
   setRoomList() {
 
@@ -39,21 +39,21 @@ export class RoomListComponent implements OnInit {
     console.log(index);
   }
 
-  onOpen(evt) {
-    console.log("CONNECTED"); 
+
+  onOpen(evt) { //client first thime touch server
+    console.log("CONNECTED");
   }
 
-  onMessage(evt){
+  onMessage(evt) { //server call client
     console.log("onmessage" + evt.data);
     this.websocket.close();
   }
 
-  onClose(evt) {
-    console.log("DISCONNECTED"); 
+  onClose(evt) { //client close socket
+    console.log("DISCONNECTED");
   }
 
-  onError(evt) {
-    console.log("ERROR" + evt.data);     
+  onError(evt) { //socket happen error
+    console.log("ERROR" + evt.data);
   }
-
 }
