@@ -2,20 +2,49 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SharedDataService {
-  wsUrl = "ws://localhost/WebApplication1/ws.ashx"; //todo:到時候要統一命名
-  websocket;
+
+  //===================webSocket===================
+  public websocket;
 
   constructor() { }
 
-  bindSocketEvent(a, b, c, d) {
-    this.websocket.onopen = a;
-    this.websocket.onclose = b;
-    this.websocket.onmessage = c;
-    this.websocket.onerror = d;
+  newSocket(v: string) {
+    let self = this;
+    this.websocket = new WebSocket(v);
+    this.websocket.onopen = function (evt) {
+      self.onOpen(evt);
+    };
+    this.websocket.onclose = function (evt) {
+      self.onClose(evt);
+    };
+    this.websocket.onmessage = function (evt) {
+      self.onMessage(evt);
+    };
+    this.websocket.onerror = function (evt) {
+      self.onError(evt);
+    };
   }
 
-  newSocket(v: string) {
-    this.websocket = new WebSocket(v);
-    return this.websocket;
+  onOpen(evt) { //client first time touch server
+    console.log("CONNECTED");
   }
+
+  onMessage(evt) { //server call client
+    debugger;
+    let data = evt.data;
+    console.log("onmessage" + data);
+    // this.websocket.close();
+  }
+
+  onClose(evt) { //client close socket
+    console.log("DISCONNECTED");
+  }
+
+  onError(evt) { //socket happen error
+    console.log("ERROR" + evt.data);
+  }
+
+  //===================roomList===================
+  room_list = ['user1', 'user2'];
+
 }

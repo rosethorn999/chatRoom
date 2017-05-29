@@ -1,3 +1,4 @@
+import { SharedDataService } from './../shared-data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,15 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-box.component.css']
 })
 export class ChatBoxComponent implements OnInit {
-  private userName = "Angular Developer";
-  private msgs: Array<string> = [];
+  userName = "Angular Developer";
+  msgs: Array<string> = [];
 
-  constructor() { }
+  constructor(private sharedDataService: SharedDataService) { }
 
   ngOnInit() {
   }
 
   sendMsg(v: string) {
+    let websocket = this.sharedDataService.websocket;
+    debugger;
     this.msgs.push(v);
+    websocket.send("dd");
   }
 }
