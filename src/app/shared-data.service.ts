@@ -61,6 +61,6 @@ export class SharedDataService {
       "room": this.thisRoomName,
       "msg": v
     };
-    this.websocket.send(json);
+    this.websocket.send(JSON.stringify(json));
   }
 }
