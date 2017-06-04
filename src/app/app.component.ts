@@ -14,9 +14,9 @@ export class AppComponent implements OnInit {
   constructor(private sharedDataService: SharedDataService) { }
 
   ngOnInit() {
-    //let userName = prompt('please keyin your userName', 'user0');
-    let wsUrl: string =  "ws://localhost/WebSocket/ws.ashx?name=user0&room=roomA"; //todo:到時候要統一命名
-    //this.sharedDataService.newSocket(wsUrl + '?name=' + userName);
+    this.sharedDataService.thisUser = prompt('please keyin your userName', 'user0');
+
+    let wsUrl: string = "ws://localhost/WebSocket/ws.ashx";
     this.sharedDataService.newSocket(wsUrl);
   }
 }

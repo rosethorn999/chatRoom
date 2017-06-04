@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SharedDataService {
+  constructor() { }
 
   //===================webSocket===================
   public websocket;
-
-  constructor() { }
-
   newSocket(v: string) {
     let self = this;
     this.websocket = new WebSocket(v);
@@ -30,8 +28,12 @@ export class SharedDataService {
   }
 
   onMessage(evt) { //server call client
-    debugger;
-    let data = evt.data;
+    let data: string = evt.data;
+
+    if (data.indexOf("talk") > 0) {
+      this.allMessages = JSON.parse(data);
+      this.thisTalk = this.allMessages[this.thisRoomName].talk; //拆成某房間的訊息
+    }
     console.log("onmessage" + data);
     // this.websocket.close();
   }
@@ -44,7 +46,21 @@ export class SharedDataService {
     console.log("ERROR" + evt.data);
   }
 
-  //===================roomList===================
-  room_list = ['user1', 'user2'];
+  //===================chat===================
+  thisUser = "";
+  thisRoomName = "";
+  thisTalk = "";
 
+  room_list = ['user1', 'user2'];
+  allMessages = {};
+
+  sendMsg(v) {
+    //?name=user0&room=" + this.sharedDataService.thisRoomName
+    let json = {
+      "name": this.thisUser,
+      "room": this.thisRoomName,
+      "msg": v
+    };
+    this.websocket.send(json);
+  }
 }

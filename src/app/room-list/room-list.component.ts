@@ -17,7 +17,8 @@ export class RoomListComponent implements OnInit {
 
   setRoomList() { }
 
-  changeRoom(index: any) {
-    console.log(index);
+  changeRoom(name: any) {
+    this.sharedDataService.thisRoomName = name;
+    console.log(name);
   }
 }

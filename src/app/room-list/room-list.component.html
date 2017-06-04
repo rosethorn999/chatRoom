@@ -1,6 +1,6 @@
 <div class="container">
     <ul id="roomlist">
-        <li *ngFor="let room of room_list;let i = index;" (mousedown)='changeRoom(i)'>
+        <li *ngFor="let room of room_list;let i = index;" (mousedown)='changeRoom(room)'>
             <div>{{room}}</div>
         </li>
     </ul>
