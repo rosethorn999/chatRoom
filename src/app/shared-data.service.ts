@@ -33,6 +33,7 @@ export class SharedDataService {
     if (data.indexOf("talk") > 0) {
       this.allMessages = JSON.parse(data);
       this.thisTalk = this.allMessages[this.thisRoomName].talk; //拆成某房間的訊息
+      console.log(this.thisTalk);
     }
     console.log("onmessage" + data);
     // this.websocket.close();
@@ -49,7 +50,7 @@ export class SharedDataService {
   //===================chat===================
   thisUser = "";
   thisRoomName = "";
-  thisTalk = "";
+  thisTalk = [];
 
   room_list = ['user1', 'user2'];
   allMessages = {};
@@ -62,5 +63,9 @@ export class SharedDataService {
       "msg": v
     };
     this.websocket.send(JSON.stringify(json));
+  }
+
+  getThisTalk(){
+    return this.thisTalk;
   }
 }
