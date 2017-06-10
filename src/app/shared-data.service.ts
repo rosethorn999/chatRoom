@@ -50,7 +50,7 @@ export class SharedDataService {
   //===================chat===================
   thisUser = "";
   thisRoomName = "";
-  thisTalk = [];
+  public thisTalk: Array<Object> = [];
 
   room_list = ['user1', 'user2'];
   allMessages = {};
@@ -63,9 +63,5 @@ export class SharedDataService {
       "msg": v
     };
     this.websocket.send(JSON.stringify(json));
-  }
-
-  getThisTalk(){
-    return this.thisTalk;
   }
 }

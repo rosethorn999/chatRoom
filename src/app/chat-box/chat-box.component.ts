@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatBoxComponent implements OnInit {
   userName = "Angular Developer";
-  msgs = this.sharedDataService.thisTalk;
 
   constructor(private sharedDataService: SharedDataService) { }
   ngOnInit() {
@@ -16,9 +15,6 @@ export class ChatBoxComponent implements OnInit {
 
   sendMsg(v: string) {
     let websocket = this.sharedDataService.websocket;
-
     this.sharedDataService.sendMsg(v);
-    this.msgs = this.sharedDataService.getThisTalk();
-    console.log(this.msgs);
   }
 }
