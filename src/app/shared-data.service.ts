@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class SharedDataService {
@@ -30,30 +31,36 @@ export class SharedDataService {
   onMessage(evt) { //server call client
     let data: string = evt.data;
 
-    if (data.indexOf("talk") > 0) {
-      this.allMessages = JSON.parse(data);
-      this.thisTalk = this.allMessages[this.thisRoomName].talk; //拆成某房間的訊息
-      console.log(this.thisTalk);
+    if (data.indexOf("msg") == -1) { //後端有訊息要告知
+      console.log(data);
+    } else { //回傳正規資料
+      let newMsg = JSON.parse(data);
+      let room = newMsg["room"];
+      let name = newMsg["name"];
+      let msg = newMsg["msg"];
+      if (this.allMessages[room] !== undefined) {
+        this.allMessages[room]["talk"].push({ "name": name, "message": msg });
+      } else {
+        this.allMessages[room] = { "talk": [{ "name": name, "message": msg }] };
+      }
     }
-    console.log("onmessage" + data);
-    // this.websocket.close();
   }
 
   onClose(evt) { //client close socket
-    console.log("DISCONNECTED");
+    console.log("onClose:");
   }
 
   onError(evt) { //socket happen error
-    console.log("ERROR" + evt.data);
+    console.log("onError: " + evt.data);
   }
 
   //===================chat===================
-  thisUser = "";
-  thisRoomName = "";
+  public thisUser = "";
+  public thisRoomName = "";
   public thisTalk: Array<Object> = [];
 
-  room_list = ['user1', 'user2'];
-  allMessages = {};
+  public room_list = ['user1', 'user2'];
+  public allMessages = {};
 
   sendMsg(v) {
     //?name=user0&room=" + this.sharedDataService.thisRoomName
@@ -64,4 +71,5 @@ export class SharedDataService {
     };
     this.websocket.send(JSON.stringify(json));
   }
+
 }

@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs/Subject';
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { SharedDataService } from './../shared-data.service';
 import { EventEmitter } from "events";
@@ -20,5 +21,12 @@ export class RoomListComponent implements OnInit {
   changeRoom(name: any) {
     this.sharedDataService.thisRoomName = name;
     console.log(name);
+    this.dataStringSource.next(name);
   }
+
+  // Observable string source
+  private dataStringSource = new Subject<string>();
+  // Observable string stream
+  dataString$ = this.dataStringSource.asObservable();
+  // Service message commands
 }

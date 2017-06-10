@@ -4,7 +4,7 @@
         <span class="userName">{{userName}}</span>
     </div>
     <div class="history">
-        <div *ngFor="let msg of sharedDataService.thisTalk">{{msg.name}} said: {{msg.message}}</div>
+        <div *ngFor="let msg of sharedDataService.allMessages[sharedDataService.thisRoomName]['talk']">{{msg.name}} said: {{msg.message}}</div>
     </div>
     <div class="newMsg">
         <input class="inputBox" #inputBox placeholder="key in your msg">
