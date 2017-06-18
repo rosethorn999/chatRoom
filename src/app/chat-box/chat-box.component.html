@@ -8,6 +8,6 @@
     </div>
     <div class="newMsg">
         <input class="inputBox" #inputBox placeholder="key in your msg">
-        <div class="sendMsgButton" (click)="sendMsg(inputBox.value)">SEND</div>
+        <div class="sendMsgButton" (click)="sendMsg(inputBox.value);inputBox.value=''">SEND</div>
     </div>
 </div>

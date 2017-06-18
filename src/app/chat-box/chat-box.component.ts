@@ -14,7 +14,6 @@ export class ChatBoxComponent implements OnInit {
   }
 
   sendMsg(v: string) {
-    let websocket = this.sharedDataService.websocket;
-    this.sharedDataService.sendMsg(v);
+    this.sharedDataService.sendMsg(v); //向後端發出一個訊息
   }
 }
