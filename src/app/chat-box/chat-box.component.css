@@ -30,6 +30,7 @@
 
 .history {
     height: calc(100% - 100px);
+    overflow-y: scroll;
     width: 100%;
     /*background-image: "";*/
 }
