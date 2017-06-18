@@ -13,6 +13,6 @@
         <div class="sendMsgButton" (click)="sendMsg(inputBox.value);inputBox.value=''">SEND</div>
     </div>
 </div>
-<!--<div *ngIf="sharedDataService.allMessages[sharedDataService.thisRoomName].length>0" class="container">
-    <span>tttttttttttttttt</span>
-</div>-->
+<div *ngIf="sharedDataService.thisRoomName==null" class="container">
+    <h1>Please select a room from list(leftside) to new a chat!</h1>
+</div>
