@@ -1,13 +1,18 @@
-<div class="container">
+<div class="container" *ngIf="sharedDataService.thisRoomName!=null">
     <div class="header">
         <img class="userImage" src="src/images/angular.svg">
-        <span class="userName">{{userName}}</span>
+        <span class="userName">{{sharedDataService.thisRoomName}}</span>
     </div>
     <div class="history">
-        <div *ngFor="let msg of sharedDataService.allMessages[sharedDataService.thisRoomName]['talk']">{{msg.name}} said: {{msg.message}}</div>
+        <div  *ngIf="sharedDataService.allMessages[sharedDataService.thisRoomName]!=undefined">
+            <div *ngFor="let msg of sharedDataService.allMessages[sharedDataService.thisRoomName]['talk']">{{msg.name}} said: {{msg.message}}</div>
+        </div>
     </div>
     <div class="newMsg">
         <input class="inputBox" #inputBox placeholder="key in your msg">
         <div class="sendMsgButton" (click)="sendMsg(inputBox.value);inputBox.value=''">SEND</div>
     </div>
 </div>
+<!--<div *ngIf="sharedDataService.allMessages[sharedDataService.thisRoomName].length>0" class="container">
+    <span>tttttttttttttttt</span>
+</div>-->

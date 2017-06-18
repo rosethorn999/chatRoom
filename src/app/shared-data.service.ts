@@ -56,7 +56,7 @@ export class SharedDataService {
 
   //===================chat===================
   public thisUser = "";
-  public thisRoomName = "";
+  public thisRoomName = null;
   public thisTalk: Array<Object> = [];
 
   public room_list = ['user1', 'user2'];

@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-box.component.css']
 })
 export class ChatBoxComponent implements OnInit {
-  userName = this.sharedDataService.thisUser;//"Angular Developer";
-
   constructor(private sharedDataService: SharedDataService) { }
   ngOnInit() {
   }
