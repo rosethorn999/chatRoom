@@ -33,7 +33,7 @@ export class SharedDataService {
 
     if (data.indexOf("msg") == -1) { //後端有訊息要告知
       console.log(data);
-    } else { //回傳正規資料
+    } else if (this.thisRoomName) { //回傳正規資料
       let newMsg = JSON.parse(data);
       let room = newMsg["room"];
       let name = newMsg["name"];
@@ -52,14 +52,17 @@ export class SharedDataService {
 
   onError(evt) { //socket happen error
     console.log("onError: " + evt.data);
+    this.showLoading = true;
   }
+
+  public showLoading: boolean = false;
 
   //===================chat===================
   public thisUser = "";
   public thisRoomName = null;
   public thisTalk: Array<Object> = [];
 
-  public room_list = ['user1', 'user2'];
+  public room_list = ['roomA', 'roomB'];
   public allMessages = {};
 
   sendMsg(v) {
