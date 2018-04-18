@@ -59,7 +59,7 @@ export class SharedDataService {
   public thisRoomName = null;
   public thisTalk: Array<Object> = [];
 
-  public room_list = ['user1', 'user2'];
+  public room_list = ['RD Club', 'CS Club'];
   public allMessages = {};
 
   sendMsg(v) {
