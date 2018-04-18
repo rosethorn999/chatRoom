@@ -31,9 +31,9 @@ export class SharedDataService {
   onMessage(evt) { //server call client
     let data: string = evt.data;
 
-    if (data.indexOf("msg") == -1) { //後端有訊息要告知
+    if (data.indexOf("msg") == -1) { //後端���知
       console.log(data);
-    } else { //回傳正規資料
+    } else if (this.thisRoomName) { //�傳�資�
       let newMsg = JSON.parse(data);
       let room = newMsg["room"];
       let name = newMsg["name"];
@@ -52,14 +52,17 @@ export class SharedDataService {
 
   onError(evt) { //socket happen error
     console.log("onError: " + evt.data);
+    this.showLoading = true;
   }
+
+  public showLoading: boolean = false;
 
   //===================chat===================
   public thisUser = "";
   public thisRoomName = null;
   public thisTalk: Array<Object> = [];
 
-  public room_list = ['RD Club', 'CS Club'];
+  public room_list = ['roomA', 'roomB'];
   public allMessages = {};
 
   sendMsg(v) {
